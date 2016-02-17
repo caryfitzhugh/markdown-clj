@@ -278,3 +278,8 @@
 (deftest two-links-tests-link-processing
   (is (= "<h2>When you have a pair of links <a href='http://123.com/1'>link1</a> and you want both <a href='That's crazy'>Wow</a></h2>"
       (markdown/md-to-html-string "## When you have a pair of links [link1](http://123.com/1) and you want both [Wow](That's crazy)"))))
+
+(deftest bold-inside-a-list
+  (is (= "<ol><li>chickens.</li></ol><p> <strong>See more: <a href='http://cluck.cluck.com'>Cluck Cluck</a></strong> </p>"
+         (markdown/md-to-html-string "1. chickens. \n\n **See more: [Cluck Cluck](http://cluck.cluck.com)** \n\n")
+         )))

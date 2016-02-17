@@ -62,8 +62,9 @@
                         text
                         (re-pattern (str escape-delimiter "\\d+" escape-delimiter))
                         #(get (:frozen-strings state) % %))]
+
     (if (= text unfrozen-text)
-      [unfrozen-text (dissoc state :frozen-strings)]
+      [unfrozen-text state] ;; Keep the frozen strings around , b/c they may be unthawed on a subsequent line
       (recur unfrozen-text state))))
 
 (defn escaped-chars [text state]
